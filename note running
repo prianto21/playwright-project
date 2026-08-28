@@ -1,0 +1,54 @@
+**running berdasarkan spesifik test dan muncul browsernya, disini contohnya test "Successful login"
+npx playwright test -g "Successful login" --headed
+
+** running berdasarkan nama file Testnya dengan debug mode contoh disini di file loginTest.spec.ts
+npx playwright test tests/loginTest.spec.ts --debug
+
+
+
+
+
+** locator buat class
+page.locator('.login-button')
+**locator buat id (test-dataid)
+page.locator('#login-button')
+
+// ROLE
+page.getByRole('button', { name: 'Login' })
+
+// LABEL
+page.getByLabel('Username')
+
+// PLACEHOLDER
+page.getByPlaceholder('Enter username')
+
+// TEXT
+page.getByText('Transaction')
+
+// TEST ID
+page.getByTestId('login-button')
+
+// CLASS
+page.locator('.btn-login')
+
+// ID
+page.locator('#username')
+
+// ATTRIBUTE
+page.locator('[data-testid="login"]')
+
+// CLASS + TEXT
+page.locator('.menu-item')
+    .filter({ hasText: 'Transaction' })
+
+// EXACT TEXT
+page.getByText('Transaction', { exact: true })
+
+// FIRST
+page.locator('.item').first()
+
+// LAST
+page.locator('.item').last()
+
+// NTH
+page.locator('.item').nth(2)

@@ -1,31 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-// <input type="text" aria-label="Username">
-// <input type="password" aria-label="Password">
-// <button>Login</button>
-
-test('LoginTest', async ({ page }) => {
-
-    // 1. buka halaman login
-
-    // 2. ambil username
-    const usernameInput = page.getByRole('textbox', { name: 'Username' });
-    // 3. isi username dengan "alex"
-    await usernameInput.fill('alex');
-    // 4. ambil password
-    const passwordInput = page.getByLabel('password')
-    // 5. isi password dengan "123456"
-    await passwordInput.fill('123456'); 
-    // 6. ambil button Login
-    const loginButton = page.getByRole('button', { name: 'Login' });
-    // 7. klik Login
-    await loginButton.click();
-});
-
 test('Successful login', async ({ page }) => {
 
     // 1. Buka halaman login
-    await page.goto('/');
+    await page.goto('https://www.saucedemo.com');
     // 2. Cari username input
     const username = page.getByPlaceholder('Username')
     // 3. Isi standard_user
@@ -36,7 +14,9 @@ test('Successful login', async ({ page }) => {
     await password.fill('secret_sauce')
     // 6. Cari tombol Login
     // 7. Klik Login
-    await page.getByRole('button', { name: 'Login' }).click();
+    // await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByRole('button', { name: 'LOGIN' }).click();
+
     // 8. Verify URL inventory
     await expect(page).toHaveURL(/.*inventory.html/);
 
@@ -52,17 +32,39 @@ test('Successful login', async ({ page }) => {
 // TRX-1002          FAILED       [View]
 // TRX-1003          SUCCESS      [View]
 
-// test('view failed details', async ({ page }) => {
+test('View failed transaction', async ({ page }) => {
 
-//    const transactionRow = page
-//     .getByRole('row')
-//     .filter({ hasText: 'TRX-1002' });
+      // cari row TRX-1002
+    //   const transactionRow1= page.getByRole('row').filter({hasText:'TRX-1002'});
+     const transactionRow = page
+    .getByRole('row')
+    .filter({ hasText: 'TRX-1002' });
+    // klik View pada row tersebut
+    await transactionRow
+    .getByRole('button', { name: 'View' })
+    .click();
+    // pastikan TRX-1002 muncul
+    
+    await expect(
+        page.getByText('TRX-1002')
+    ).toBeVisible();
+});
 
-//     await transactionRow
-//     .getByRole('button', { name: 'View' })
-//     .click();
 
-//     await expect(
-//         page.getByText('TRX-1002')
-//     ).toBeVisible();
-// });
+test('Login failed with invalid credential', async ({ page }) => {
+
+    // 1. buka SauceDemo
+  await page.goto('https://www.saucedemo.com');
+    // 2. isi username dengan credential yang salah
+    const username = page.getByPlaceholder('Username')
+    // 3. Isi standard_user
+    await username.fill('standard_user');
+    // 3. isi password
+    const password = page.getByPlaceholder('Password')
+    await password.fill('wrong_password');
+
+       // 4. klik Login
+    await page.getByRole('button', { name: 'LOGIN' }).click();
+    // 5. pastikan pesan error muncul
+    await expect(page.getByText('Epic sadface: Username and password do not match any user in this service')).toBeVisible();
+});
