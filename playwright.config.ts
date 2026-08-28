@@ -8,6 +8,9 @@ export default defineConfig({
         headless: false,
         screenshot: 'only-on-failure',
         trace: 'on-first-retry',
+         launchOptions: {
+        slowMo: 500,
+    },
     },
 
     projects: [
@@ -16,4 +19,6 @@ export default defineConfig({
             use: { ...devices['Desktop Chrome'] },
         },
     ],
+
+    
 });

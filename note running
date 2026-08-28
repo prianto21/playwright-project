@@ -4,9 +4,11 @@ npx playwright test -g "Successful login" --headed
 ** running berdasarkan nama file Testnya dengan debug mode contoh disini di file loginTest.spec.ts
 npx playwright test tests/loginTest.spec.ts --debug
 
+** running biasa spesifik ke nama test
+npx playwright test -g "Add product to cart"  
 
-
-
+**running with delay 1000=1detik
+npx playwright test --headed --slow-mo=1000
 
 ** locator buat class
 page.locator('.login-button')
@@ -52,3 +54,9 @@ page.locator('.item').last()
 
 // NTH
 page.locator('.item').nth(2)
+
+page.getByRole('button', { name: 'Login' })
+page.getByRole('link', { name: 'Dashboard' })
+page.getByRole('heading', { name: 'Welcome' })
+page.getByRole('checkbox', { name: 'Remember me' })
+page.getByRole('textbox', { name: 'Username' })
