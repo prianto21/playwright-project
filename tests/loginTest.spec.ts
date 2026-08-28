@@ -54,7 +54,7 @@ test('View failed transaction', async ({ page }) => {
 test('Login failed with invalid credential', async ({ page }) => {
 
     // 1. buka SauceDemo
-  await page.goto('https://www.saucedemo.com');
+    await page.goto('https://www.saucedemo.com');
     // 2. isi username dengan credential yang salah
     const username = page.getByPlaceholder('Username')
     // 3. Isi standard_user
@@ -67,4 +67,21 @@ test('Login failed with invalid credential', async ({ page }) => {
     await page.getByRole('button', { name: 'LOGIN' }).click();
     // 5. pastikan pesan error muncul
     await expect(page.getByText('Epic sadface: Username and password do not match any user in this service')).toBeVisible();
+});
+
+test('Logout Test', async ({ page }) => {
+     // 1. buka SauceDemo
+    await page.goto('https://www.saucedemo.com');
+    // 2. isi username dengan credential yang salah
+    const username = page.getByPlaceholder('Username')
+    // 3. Isi standard_user
+    await username.fill('standard_user');
+    // 3. isi password
+    const password = page.getByPlaceholder('Password')
+    await password.fill('secret_sauce');
+
+       // 4. klik Login
+    await page.getByRole('button', { name: 'LOGIN' }).click();
+    await page.locator('#react-burger-menu-btn').click();
+    await page.getByRole('link',{name:'Logout'}).click();
 });
