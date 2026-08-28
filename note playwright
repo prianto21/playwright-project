@@ -1,0 +1,6 @@
+ //buat log banyak
+ console.log('URL:', page.url());
+    console.log(
+    'Cart count:',
+    await page.locator('[data-test="shopping-cart-link"]').count()
+);
