@@ -4,3 +4,37 @@
     'Cart count:',
     await page.locator('[data-test="shopping-cart-link"]').count()
 );
+
+                    PLAYWRIGHT
+                         │
+                         ▼
+              ┌──────────────────┐
+              │ auth.setup.ts    │
+              └────────┬─────────┘
+                       │
+                 Login sekali
+                       │
+                       ▼
+              ┌──────────────────┐
+              │ .auth/user.json  │
+              └────────┬─────────┘
+                       │
+                 dependencies
+                       │
+                       ▼
+              ┌──────────────────┐
+              │ chromium project │
+              │ storageState     │
+              └────────┬─────────┘
+                       │
+              authenticated page
+                       │
+                       ▼
+              page.goto('/inventory.html')
+                       │
+             ┌─────────┴─────────┐
+             ▼                   ▼
+       Add product           View product
+             │                   │
+             ▼                   ▼
+           PASS                PASS

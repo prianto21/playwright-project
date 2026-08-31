@@ -8,17 +8,27 @@ export default defineConfig({
         headless: false,
         screenshot: 'only-on-failure',
         trace: 'on-first-retry',
-         launchOptions: {
-        slowMo: 500,
-    },
+
+        launchOptions: {
+            slowMo: 1000,
+        },
     },
 
     projects: [
         {
+            name: 'setup',
+            testMatch: /auth\.setup\.ts/,
+        },
+
+        {
             name: 'chromium',
-            use: { ...devices['Desktop Chrome'] },
+
+            use: {
+                ...devices['Desktop Chrome'],
+                storageState: '.auth/user.json',
+            },
+
+            dependencies: ['setup'],
         },
     ],
-
-    
 });

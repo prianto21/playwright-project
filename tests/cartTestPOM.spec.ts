@@ -3,13 +3,14 @@ import { LoginPage } from "../pages/loginPage";
 import { ProductPage } from "../pages/ProductPage";
 import { CartPage } from "../pages/cartPage";
 
-test.beforeEach(async ({ page }) => {
-  await page.goto("https://www.saucedemo.com");
-  const loginPage = new LoginPage(page);
-  await loginPage.login("standard_user", "secret_sauce");
-});
+// test.beforeEach(async ({ page }) => {
+//   await page.goto("https://www.saucedemo.com");
+//   const loginPage = new LoginPage(page);
+//   await loginPage.login("standard_user", "secret_sauce");
+// });
 
 test("Add product to cart", async ({ page }) => {
+  await page.goto('/inventory.html');
   const productPage = new ProductPage(page);
   const cartPage = new CartPage(page);
   await productPage.addToCart("Sauce Labs Backpack");
@@ -23,6 +24,7 @@ test("Add product to cart", async ({ page }) => {
 });
 
 test("View product", async ({ page }) => {
+  await page.goto('/inventory.html');
   const productPage = new ProductPage(page);
   await expect(productPage.getProduct("Sauce Labs Backpack")).toBeVisible();
 });
