@@ -3,6 +3,7 @@
     console.log(
     'Cart count:',
     await page.locator('[data-test="shopping-cart-link"]').count()
+    
 );
 
                     PLAYWRIGHT
