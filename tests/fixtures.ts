@@ -5,6 +5,7 @@ import { CartPage } from "../pages/CartPage";
 type MyFixtures = {
   productPage: ProductPage;
    cartPage: CartPage;
+   cartPageDependency: CartPage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -19,6 +20,11 @@ export const test = base.extend<MyFixtures>({
     const cartPage = new CartPage(page);
 
     await use(cartPage);
+  },
+
+  cartPageDependency: async ({ productPage }, use) => {
+    const cartPageDependency = new CartPage(productPage['page']);
+    await use(cartPageDependency);
   },
 
 });

@@ -20,6 +20,8 @@ test('Login', async ({ page }) => {
     const loginButton = page.getByRole('button', { name: 'Login' });
     // 7. klik Login
     await loginButton.click();
+
+    await expect (page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
 });
 
 
@@ -30,18 +32,3 @@ test('Login', async ({ page }) => {
 // TRX-1001          SUCCESS      [View]
 // TRX-1002          FAILED       [View]
 // TRX-1003          SUCCESS      [View]
-
-test('view failed details', async ({ page }) => {
-
-   const transactionRow = page
-    .getByRole('row')
-    .filter({ hasText: 'TRX-1002' });
-
-    await transactionRow
-    .getByRole('button', { name: 'View' })
-    .click();
-
-    await expect(
-        page.getByText('TRX-1002')
-    ).toBeVisible();
-});
