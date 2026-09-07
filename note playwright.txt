@@ -117,3 +117,23 @@ Actual:   inventory
 padahal requirement sebenarnya login → inventory.
 
 → test-nya yang salah.
+
+***API TESTING*****
+
+Ada satu konsep yang harus kamu simpan kuat-kuat
+
+HTTP 4xx/5xx tidak otomatis berarti test FAIL.
+
+Yang menentukan PASS/FAIL adalah:
+
+Actual Behavior
+       ↓
+dibandingkan dengan
+       ↓
+Expected Behavior / Requirement
+
+** toBeDefined untuk memastikan nilainya ada
+expect(body.token).toBeDefined();
+
+** toBe Memastikan nilainya harus persis sama.
+expect(body.token).toBe("abc123");
