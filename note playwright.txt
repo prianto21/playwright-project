@@ -1,3 +1,55 @@
+ 
+ ** locator buat class
+page.locator('.login-button')
+**locator buat id (test-dataid)
+page.locator('#login-button')
+
+// ROLE
+page.getByRole('button', { name: 'Login' })
+
+// LABEL
+page.getByLabel('Username')
+
+// PLACEHOLDER
+page.getByPlaceholder('Enter username')
+
+// TEXT
+page.getByText('Transaction')
+
+// TEST ID
+page.getByTestId('login-button')
+
+// CLASS
+page.locator('.btn-login')
+
+// ID
+page.locator('#username')
+
+// ATTRIBUTE
+page.locator('[data-testid="login"]')
+
+// CLASS + TEXT
+page.locator('.menu-item')
+    .filter({ hasText: 'Transaction' })
+
+// EXACT TEXT
+page.getByText('Transaction', { exact: true })
+
+// FIRST
+page.locator('.item').first()
+
+// LAST
+page.locator('.item').last()
+
+// NTH
+page.locator('.item').nth(2)
+
+page.getByRole('button', { name: 'Login' })
+page.getByRole('link', { name: 'Dashboard' })
+page.getByRole('heading', { name: 'Welcome' })
+page.getByRole('checkbox', { name: 'Remember me' })
+page.getByRole('textbox', { name: 'Username' })
+
  //buat log banyak
  console.log('URL:', page.url());
     console.log(
@@ -38,4 +90,30 @@
        Add product           View product
              │                   │
              ▼                   ▼
-           PASS                PASS
+           PASS                
+           
+# 7 september 2026
+3 jenis bug
+1. Application bug
+
+Expected: inventory.html
+Actual:   login.html
+
+→ kemungkinan aplikasi bermasalah.
+
+2. Automation bug
+
+Locator salah
+Element tidak ditemukan
+Timeout
+
+→ script automation yang bermasalah.
+
+3. Test/Assertion salah ← kasus kita
+
+Expected: checkout
+Actual:   inventory
+
+padahal requirement sebenarnya login → inventory.
+
+→ test-nya yang salah.

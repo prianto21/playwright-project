@@ -7,56 +7,12 @@ npx playwright test tests/loginTest.spec.ts --debug
 ** running biasa spesifik ke nama test
 npx playwright test -g "Add product to cart"  
 
-**running with delay 1000=1detik
-npx playwright test --headed --slow-mo=1000
+** running spesifik ke nama file test
+ npx playwright test loginDataDriven.spec.ts --reporter=html
 
-** locator buat class
-page.locator('.login-button')
-**locator buat id (test-dataid)
-page.locator('#login-button')
+** untuk menampilkan report htmlnya buka di browser file reportnya di path : playwright-report/index.html
+ npx playwright show-report                               
 
-// ROLE
-page.getByRole('button', { name: 'Login' })
 
-// LABEL
-page.getByLabel('Username')
-
-// PLACEHOLDER
-page.getByPlaceholder('Enter username')
-
-// TEXT
-page.getByText('Transaction')
-
-// TEST ID
-page.getByTestId('login-button')
-
-// CLASS
-page.locator('.btn-login')
-
-// ID
-page.locator('#username')
-
-// ATTRIBUTE
-page.locator('[data-testid="login"]')
-
-// CLASS + TEXT
-page.locator('.menu-item')
-    .filter({ hasText: 'Transaction' })
-
-// EXACT TEXT
-page.getByText('Transaction', { exact: true })
-
-// FIRST
-page.locator('.item').first()
-
-// LAST
-page.locator('.item').last()
-
-// NTH
-page.locator('.item').nth(2)
-
-page.getByRole('button', { name: 'Login' })
-page.getByRole('link', { name: 'Dashboard' })
-page.getByRole('heading', { name: 'Welcome' })
-page.getByRole('checkbox', { name: 'Remember me' })
-page.getByRole('textbox', { name: 'Username' })
+ config knowledge :
+ trace: "on-first-retry", artinya trace hanya akan diambil ketika test gagal pada percobaan pertama, dan tidak akan diambil pada percobaan kedua. Jika test berhasil pada percobaan pertama, trace tidak akan diambil. Jika test gagal pada percobaan pertama, trace akan diambil dan disimpan untuk dianalisis.

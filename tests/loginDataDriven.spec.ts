@@ -23,7 +23,9 @@ for (const data of loginData) {
       await test.step("Verify login result", async () => {
 
         if (data.expectedResult === "success") {
-          await expect(page).toHaveURL(/inventory/);
+          // await expect(page).toHaveURL(/inventory/);
+          await expect(page).toHaveURL(/checkout/);
+
         }
 
         if (data.expectedResult === "invalid_credentials") {
