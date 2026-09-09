@@ -1,9 +1,9 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../fixtures";
 import { UserApi } from "../api/UserApi";
 
-test("Get user", async ({ request }) => {
+test("Get user", async ({ apiRequest  }) => {
 
-    const userApi = new UserApi(request);
+    const userApi = new UserApi(apiRequest );
 
     const response = await userApi.getUser(2);
 
