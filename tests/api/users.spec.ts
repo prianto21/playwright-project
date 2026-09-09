@@ -1,10 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { UserApi } from "../api/UserApi";
 
 test("Get user", async ({ request }) => {
 
-    const response = await request.get(
-        "https://reqres.in/api/users/2"
-    );
+    const userApi = new UserApi(request);
+
+    const response = await userApi.getUser(2);
 
     expect(response.status()).toBe(200);
 
