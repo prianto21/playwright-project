@@ -1,12 +1,14 @@
 import { test as base ,request,APIRequestContext } from "@playwright/test";
 import { ProductPage } from "../pages/ProductPage";
 import { CartPage } from "../pages/CartPage";
+import { UserApi } from "./api/UserApi";
 
 type MyFixtures = {
   productPage: ProductPage;
    cartPage: CartPage;
    cartPageDependency: CartPage;
    apiRequest: APIRequestContext;
+    userApi: UserApi;
 };
   // UI FIXTURE
 export const test = base.extend<MyFixtures>({
@@ -39,6 +41,14 @@ export const test = base.extend<MyFixtures>({
 
     await apiRequest.dispose();
   },
+
+  userApi: async ({ apiRequest }, use) => {
+
+    const userApi = new UserApi(apiRequest);
+
+    await use(userApi);
+  },
+  
 });
 
 export { expect } from "@playwright/test";

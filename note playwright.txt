@@ -137,3 +137,27 @@ expect(body.token).toBeDefined();
 
 ** toBe Memastikan nilainya harus persis sama.
 expect(body.token).toBe("abc123");
+
+** toBeTruthy() :Token harus memiliki nilai yang valid/tidak kosong."
+→ toBeTruthy() bisa lebih sesuai, atau bahkan kita bisa membuat assertion yang lebih spesifik
+expect(body.token).toBeTruthy();
+
+1. Existence
+   ↓
+   toBeDefined()
+
+2. Type
+   ↓
+   typeof
+
+3. Exact value
+   ↓
+   toBe()
+
+4. Business rule
+   ↓
+   assertion sesuai requirement
+
+   expect(body.data.email).toBeDefined();
+expect(typeof body.data.email).toBe("string");
+expect(body.data.email).toContain("@");

@@ -1,9 +1,6 @@
 import { test, expect } from "../fixtures";
-import { UserApi } from "../api/UserApi";
 
-test("Get user", async ({ apiRequest  }) => {
-
-    const userApi = new UserApi(apiRequest );
+test("Get user", async ({ userApi   }) => {
 
     const response = await userApi.getUser(2);
 
