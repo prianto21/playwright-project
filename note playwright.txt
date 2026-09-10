@@ -161,3 +161,12 @@ expect(body.token).toBeTruthy();
    expect(body.data.email).toBeDefined();
 expect(typeof body.data.email).toBe("string");
 expect(body.data.email).toContain("@");
+
+LoginApi
+→ bagaimana request dikirim
+
+Schema
+→ bentuk response yang valid
+
+Test
+→ apa yang harus diverifikasi
