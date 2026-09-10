@@ -2,6 +2,7 @@ import { test as base ,request,APIRequestContext } from "@playwright/test";
 import { ProductPage } from "../pages/ProductPage";
 import { CartPage } from "../pages/CartPage";
 import { UserApi } from "./api/UserApi";
+import { LoginApi } from "./api/LoginApi";
 
 type MyFixtures = {
   productPage: ProductPage;
@@ -9,6 +10,7 @@ type MyFixtures = {
    cartPageDependency: CartPage;
    apiRequest: APIRequestContext;
     userApi: UserApi;
+    loginApi: LoginApi;
 };
   // UI FIXTURE
 export const test = base.extend<MyFixtures>({
@@ -48,7 +50,13 @@ export const test = base.extend<MyFixtures>({
 
     await use(userApi);
   },
-  
+
+  loginApi: async ({ apiRequest }, use) => {
+
+    const loginApi = new LoginApi(apiRequest);
+
+    await use(loginApi);
+  }
 });
 
 export { expect } from "@playwright/test";
